@@ -1,0 +1,47 @@
+@startuml
+
+class Bank{
+-clientsList:List<Client>
+-employee:List<Employee>
++addClient()
+
+}
+
+class Client {
+ -id:UUID.toString
+ -accountBankList:List<AccountBank>
+ +sendMoney(String receiverId,int amount):void
+ +addAccountToList()
+ }
+
+
+class AccountBank extends Client{
+-accountId:UUID
+-balance:int
+-currency:String
+-accountType:AccountBank
+}
+
+class Employee{
+-transactionList:list<Transaction>
+}
+
+enum accountType{
+Consumer
+, Corporate
+}
+
+
+class Transaction {
+-transactionId:UUID
+-receiverId:String
+-amount:int
+}
+
+
+Bank o-- Client
+Bank o-- Employee
+'AccountBank o-- Client
+
+
+@enduml
